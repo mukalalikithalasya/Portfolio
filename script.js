@@ -91,3 +91,44 @@ reveal();
 document.querySelectorAll('section').forEach(section => {
     section.classList.add('reveal');
 });
+
+/*=============== CERTIFICATE MODAL ===============*/
+const modal = document.getElementById('certificate-modal'),
+      modalBody = document.getElementById('certificate-modal-body'),
+      modalClose = document.getElementById('certificate-modal-close'),
+      certificateLinks = document.querySelectorAll('.certificate__link');
+
+if(certificateLinks && modal){
+    certificateLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Get the certificate content from the parent item
+            const certificateItem = link.closest('.certificate__item');
+            const certificateContent = certificateItem.querySelector('.certificate__img-container').cloneNode(true);
+            
+            // Clear previous content and add new
+            modalBody.innerHTML = '';
+            modalBody.appendChild(certificateContent);
+            
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+}
+
+if(modalClose){
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'initial'; // Restore scrolling
+    });
+}
+
+// Close modal when clicking outside content
+window.addEventListener('click', (e) => {
+    if (e.target == modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'initial';
+    }
+});
+
