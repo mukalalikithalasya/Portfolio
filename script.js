@@ -132,3 +132,17 @@ window.addEventListener('click', (e) => {
     }
 });
 
+/*=============== PROJECT CARD CLICKABLE ===============*/
+const projectCards = document.querySelectorAll('.projects__card');
+
+projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+        // If the click is on the button itself or a child of the button, the <a> tag will handle it.
+        // If the click is anywhere else on the card, we trigger the click.
+        if (!e.target.closest('.projects__button')) {
+            const link = card.querySelector('.projects__button').getAttribute('href');
+            window.open(link, '_blank');
+        }
+    });
+});
+

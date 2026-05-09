@@ -447,6 +447,7 @@ img {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     transition: .4s;
     border: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .projects__card:hover {
